@@ -1,0 +1,32 @@
+server:
+  # 服务端口
+  port: 8070
+
+gins:
+  # 数据库
+  datasource:
+    path: ""
+    port: "3306"
+    config: ""
+    db-name: ""
+    username: ""
+    password: ""
+    max-idle-conns: 10
+    max-open-conns: 100
+    log-mode: ""
+    log-zap: false
+    # redis
+  redis:
+    db: 0
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+  zap:
+    level: info
+    format: console
+    prefix: github.com/twelvet-s/gins
+    director: logs
+    show-line: true
+    encode-level: LowercaseColorLevelEncoder
+    stacktrace-key: stacktrace
+    log-in-console: true
