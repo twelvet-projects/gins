@@ -1,6 +1,6 @@
 server:
   # 服务端口
-  port: 8070
+  port: 8080
 
 gins:
   # 数据库
