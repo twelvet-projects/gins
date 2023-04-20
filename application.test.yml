@@ -5,6 +5,7 @@ server:
 gins:
   # 数据库
   datasource:
+    enable: false
     path: ""
     port: "3306"
     config: ""
@@ -17,6 +18,7 @@ gins:
     log-zap: false
     # redis
   redis:
+    enable: false
     db: 0
     host: 127.0.0.1
     port: 6379

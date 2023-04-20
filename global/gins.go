@@ -13,7 +13,7 @@ var (
 	API    *gin.Engine   // 路由配置
 	DB     *gorm.DB      // 数据库
 	REDIS  *redis.Client // reids
-	VP     *viper.Viper  // yml配置
+	Viper  *viper.Viper  // yml配置
 	CONFIG config.Config // 全局应用配置
 	LOG    *zap.Logger   // 日志
 )

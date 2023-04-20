@@ -1,6 +1,7 @@
 package config
 
 type Datasource struct {
+	Enable       bool   `mapstructure:"enable" json:"enable" yaml:"enable"`                         // 是否开启（默认关闭）
 	Path         string `mapstructure:"path" json:"path" yaml:"path"`                               // 服务器地址:端口
 	Port         string `mapstructure:"port" json:"port" yaml:"port"`                               //:端口
 	Config       string `mapstructure:"config" json:"config" yaml:"config"`                         // 高级配置

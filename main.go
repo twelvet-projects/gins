@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/twelvet-s/gins/framework"
@@ -16,14 +17,16 @@ import (
 
 func main() {
 	gin.SetMode(gin.DebugMode)
-	global.VP = framework.Viper() // 初始化Viper
-	global.LOG = framework.Zap()  // 初始化zap日志库
+	global.Viper = framework.Viper() // 初始化Viper
+	global.LOG = framework.Zap()     // 初始化zap日志库
 	zap.ReplaceGlobals(global.LOG)
 
 	// 程序结束前关闭数据库链接
 	if global.DB != nil {
 		db, _ := global.DB.DB()
-		defer db.Close()
+		defer func(db *sql.DB) {
+			_ = db.Close()
+		}(db)
 	}
 
 	// 初始化路由
