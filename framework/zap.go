@@ -1,8 +1,8 @@
-package core
+package framework
 
 import (
 	"fmt"
-	"github.com/twelvet-s/gins/core/internal"
+	"github.com/twelvet-s/gins/framework/internal"
 	"github.com/twelvet-s/gins/g"
 	"github.com/twelvet-s/gins/utils/file"
 	"go.uber.org/zap"

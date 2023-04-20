@@ -1,4 +1,4 @@
-package core
+package framework
 
 import (
 	"flag"
@@ -6,7 +6,7 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
-	"github.com/twelvet-s/gins/core/internal"
+	"github.com/twelvet-s/gins/framework/internal"
 	"github.com/twelvet-s/gins/g"
 	"os"
 )

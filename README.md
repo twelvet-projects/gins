@@ -1,6 +1,6 @@
 # gins
 
-基于Gin 集成市面流行优秀的开源框架进行的高度封装WEB开发框架
+基于Gin 进行常用第三方插件封装的框架(Mysql, Redis, Viper, Zap等)，保持它的轻量、性能
 
 
 ## TwelveT交流群
