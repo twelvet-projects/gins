@@ -8,9 +8,9 @@ gins:
     path: ""
     port: "3306"
     config: ""
-    db-name: ""
-    username: ""
-    password: ""
+    db-name: "gins"
+    username: "root"
+    password: "123456"
     max-idle-conns: 10
     max-open-conns: 100
     log-mode: ""
