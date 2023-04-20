@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/twelvet-s/gins/framework"
-	"github.com/twelvet-s/gins/g"
+	"github.com/twelvet-s/gins/global"
 	"github.com/twelvet-s/gins/router"
 	"go.uber.org/zap"
 )
@@ -16,13 +16,13 @@ import (
 
 func main() {
 	gin.SetMode(gin.DebugMode)
-	g.VP = framework.Viper() // 初始化Viper
-	g.LOG = framework.Zap()  // 初始化zap日志库
-	zap.ReplaceGlobals(g.LOG)
+	global.VP = framework.Viper() // 初始化Viper
+	global.LOG = framework.Zap()  // 初始化zap日志库
+	zap.ReplaceGlobals(global.LOG)
 
 	// 程序结束前关闭数据库链接
-	if g.DB != nil {
-		db, _ := g.DB.DB()
+	if global.DB != nil {
+		db, _ := global.DB.DB()
 		defer db.Close()
 	}
 
@@ -35,7 +35,7 @@ func main() {
 	routerInit.StaticFile("/favicon.ico", "./resources/static/favicon.ico")
 
 	// 启动服务
-	port := fmt.Sprintf(":%d", g.CONFIG.Server.Port)
+	port := fmt.Sprintf(":%d", global.CONFIG.Server.Port)
 	server := framework.StartServer(port, routerInit)
 	fmt.Printf(`
 	   _______           

@@ -2,7 +2,7 @@ package internal
 
 import (
 	"fmt"
-	"github.com/twelvet-s/gins/g"
+	"github.com/twelvet-s/gins/global"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"time"
@@ -14,7 +14,7 @@ type _zap struct{}
 
 // GetEncoder 获取 zapcore.Encoder
 func (z *_zap) GetEncoder() zapcore.Encoder {
-	if g.CONFIG.Gins.Zap.Format == "json" {
+	if global.CONFIG.Gins.Zap.Format == "json" {
 		return zapcore.NewJSONEncoder(z.GetEncoderConfig())
 	}
 	return zapcore.NewConsoleEncoder(z.GetEncoderConfig())
@@ -28,9 +28,9 @@ func (z *_zap) GetEncoderConfig() zapcore.EncoderConfig {
 		TimeKey:        "time",
 		NameKey:        "logger",
 		CallerKey:      "caller",
-		StacktraceKey:  g.CONFIG.Gins.Zap.StacktraceKey,
+		StacktraceKey:  global.CONFIG.Gins.Zap.StacktraceKey,
 		LineEnding:     zapcore.DefaultLineEnding,
-		EncodeLevel:    g.CONFIG.Gins.Zap.ZapEncodeLevel(),
+		EncodeLevel:    global.CONFIG.Gins.Zap.ZapEncodeLevel(),
 		EncodeTime:     z.CustomTimeEncoder,
 		EncodeDuration: zapcore.SecondsDurationEncoder,
 		EncodeCaller:   zapcore.FullCallerEncoder,
@@ -50,13 +50,13 @@ func (z *_zap) GetEncoderCore(l zapcore.Level, level zap.LevelEnablerFunc) zapco
 
 // CustomTimeEncoder 自定义日志输出时间格式
 func (z *_zap) CustomTimeEncoder(t time.Time, encoder zapcore.PrimitiveArrayEncoder) {
-	encoder.AppendString(g.CONFIG.Gins.Zap.Prefix + t.Format("2006/01/02 - 15:04:05.000"))
+	encoder.AppendString(global.CONFIG.Gins.Zap.Prefix + t.Format("2006/01/02 - 15:04:05.000"))
 }
 
 // GetZapCores 根据配置文件的Level获取 []zapcore.Core
 func (z *_zap) GetZapCores() []zapcore.Core {
 	cores := make([]zapcore.Core, 0, 7)
-	for level := g.CONFIG.Gins.Zap.TransportLevel(); level <= zapcore.FatalLevel; level++ {
+	for level := global.CONFIG.Gins.Zap.TransportLevel(); level <= zapcore.FatalLevel; level++ {
 		cores = append(cores, z.GetEncoderCore(level, z.GetLevelPriority(level)))
 	}
 	return cores
