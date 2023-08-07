@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/twelvet-s/gins/framework"
 	"github.com/twelvet-s/gins/global"
+	"github.com/twelvet-s/gins/initialize"
 	"github.com/twelvet-s/gins/router"
 	"go.uber.org/zap"
 )
@@ -21,8 +22,11 @@ func main() {
 	global.LOG = framework.Zap()     // 初始化zap日志库
 	zap.ReplaceGlobals(global.LOG)
 
+	global.DB = initialize.Gorm() // gorm连接数据库
+	initialize.DBList()
 	// 程序结束前关闭数据库链接
 	if global.DB != nil {
+		initialize.RegisterTables() // 初始化表
 		db, _ := global.DB.DB()
 		defer func(db *sql.DB) {
 			_ = db.Close()

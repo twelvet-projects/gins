@@ -6,7 +6,7 @@ gins:
   # 数据库
   datasource:
     enable: false
-    path: ""
+    path: "gins-mysql"
     port: "3306"
     config: ""
     db-name: "gins"
@@ -20,7 +20,7 @@ gins:
   redis:
     enable: false
     db: 0
-    host: 127.0.0.1
+    host: gins-redis
     port: 6379
     password: ""
   zap:

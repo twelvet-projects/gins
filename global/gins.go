@@ -10,8 +10,9 @@ import (
 )
 
 var (
-	API    *gin.Engine   // 路由配置
-	DB     *gorm.DB      // 数据库
+	API    *gin.Engine // 路由配置
+	DB     *gorm.DB    // 数据库
+	DBList map[string]*gorm.DB
 	REDIS  *redis.Client // reids
 	Viper  *viper.Viper  // yml配置
 	CONFIG config.Config // 全局应用配置
