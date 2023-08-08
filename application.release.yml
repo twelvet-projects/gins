@@ -3,32 +3,47 @@ server:
   port: 8080
 
 gins:
+  db-type: mysql
   # 数据库
   datasource:
-    enable: false
-    path: "gins-mysql"
-    port: "3306"
-    config: ""
-    db-name: "gins"
-    username: "root"
-    password: "123456"
+    path: 127.0.0.1
+    port: 3306
+    config: charset=utf8mb4&parseTime=True&loc=Local
+    db-name: gins
+    username: root
+    password: 123456
     max-idle-conns: 10
     max-open-conns: 100
-    log-mode: ""
+    engine:
+    log-mode:
     log-zap: false
-    # redis
+  db-list:
+    - disable: true # 是否禁用
+      type: "mysql" # 数据库的类型,目前支持mysql、pgsql、mssql、oracle
+      alias-name: slave # 数据库的名称,注意: alias-name 需要在db-list中唯一
+      path: 127.0.0.1
+      port: 3306
+      config: charset=utf8mb4&parseTime=True&loc=Local
+      db-name: gins
+      username: root
+      password: 123456
+      max-idle-conns: 10
+      max-open-conns: 100
+      log-mode:
+      log-zap: false
+  # redis
   redis:
-    enable: false
-    db: 0
-    host: gins-redis
-    port: 6379
-    password: ""
+    addr: 127.0.0.1:6379
+    db: 1
+    password:
+  # 日志配置
   zap:
     level: info
     format: console
-    prefix: github.com/twelvet-s/gins
+    prefix: '[github.com/twelvet-s/gins]'
     director: logs
     show-line: true
     encode-level: LowercaseColorLevelEncoder
     stacktrace-key: stacktrace
+    max-age: 0
     log-in-console: true
