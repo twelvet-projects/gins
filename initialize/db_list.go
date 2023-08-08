@@ -16,7 +16,13 @@ func DBList() {
 		}
 		switch info.Type {
 		case "mysql":
-			dbMap[info.AliasName] = GormMysqlByConfig(config.Mysql{GeneralDB: info.GeneralDB})
+			dbMap[info.AliasName] = GormMysql(config.Mysql{GeneralDB: info.GeneralDB})
+		case "mssql":
+			dbMap[info.AliasName] = GormMssql(config.Mssql{GeneralDB: info.GeneralDB})
+		case "pgsql":
+			dbMap[info.AliasName] = GormPgSql(config.Pgsql{GeneralDB: info.GeneralDB})
+		case "oracle":
+			dbMap[info.AliasName] = GormOracle(config.Oracle{GeneralDB: info.GeneralDB})
 		default:
 			continue
 		}

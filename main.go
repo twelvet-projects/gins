@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/twelvet-s/gins/framework"
@@ -18,24 +17,19 @@ import (
 
 func main() {
 	gin.SetMode(gin.DebugMode)
-	global.Viper = framework.Viper() // 初始化Viper
-	global.LOG = framework.Zap()     // 初始化zap日志库
+	// 初始化Viper
+	global.Viper = framework.Viper()
+	// 初始化zap日志库
+	global.LOG = framework.Zap()
 	zap.ReplaceGlobals(global.LOG)
 
-	global.DB = initialize.Gorm() // gorm连接数据库
-	initialize.DBList()
-	// 程序结束前关闭数据库链接
-	if global.DB != nil {
-		initialize.RegisterTables() // 初始化表
-		db, _ := global.DB.DB()
-		defer func(db *sql.DB) {
-			_ = db.Close()
-		}(db)
-	}
+	// gorm连接数据库
+	initialize.Gorm()
+	// redis
+	initialize.Redis()
 
 	// 初始化路由
 	routerInit := router.Init()
-
 	// 设置静态目录
 	routerInit.Static("/static", "./resources/static")
 	// favicon.ico
