@@ -1,7 +1,7 @@
 package internal
 
 import (
-	"github.com/twelvet-s/gins/framework/global"
+	configGlugin "github.com/twelvet-s/gins/plugin/gorm/config"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
@@ -33,7 +33,7 @@ func (g *_gorm) Config(prefix string, singular bool) *gorm.Config {
 		Colorful:      true,
 	})
 
-	var logMode = &global.CONFIG.Gins.Datasource
+	var logMode = &configGlugin.Datasource{}
 
 	switch logMode.GetLogMode() {
 	case "silent", "Silent":

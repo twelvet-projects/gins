@@ -4,12 +4,16 @@ import (
 	"github.com/gin-gonic/gin"
 	system "github.com/twelvet-s/gins/application/system/router"
 	"github.com/twelvet-s/gins/framework/global"
+	"github.com/twelvet-s/gins/framework/initialize"
 )
 
 // InitRouter 初始化路由
 func InitRouter() *gin.Engine {
 
 	router := gin.Default()
+
+	// 安装插件
+	initialize.InstallPlugin(router)
 
 	// 处理500
 	router.Use(Advice500)

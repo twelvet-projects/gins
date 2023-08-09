@@ -6,8 +6,11 @@ import (
 	"github.com/go-redis/redis/v8"
 	"github.com/twelvet-s/gins/framework/global"
 	globalPlugin "github.com/twelvet-s/gins/plugin/redis/global"
-	"github.com/twelvet-s/gins/plugin/redis/utils"
 	"go.uber.org/zap"
+)
+
+var (
+	INSTANCE *redis.Client // redis实例
 )
 
 type redisPlugin struct{}
@@ -30,7 +33,7 @@ func (*redisPlugin) Register(group *gin.RouterGroup) {
 		global.LOG.Error("redis connect ping failed, err:", zap.Error(err))
 	} else {
 		global.LOG.Info("redis connect ping response:", zap.String("pong", pong))
-		utils.REDIS = client
+		INSTANCE = client
 	}
 }
 

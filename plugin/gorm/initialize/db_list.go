@@ -1,8 +1,8 @@
 package initialize
 
 import (
-	"github.com/twelvet-s/gins/config"
-	"github.com/twelvet-s/gins/framework/global"
+	"github.com/twelvet-s/gins/plugin/gorm/config"
+	"github.com/twelvet-s/gins/plugin/gorm/global"
 	"gorm.io/gorm"
 )
 
@@ -10,7 +10,7 @@ const sys = "system"
 
 func DBList() {
 	dbMap := make(map[string]*gorm.DB)
-	for _, info := range global.CONFIG.Gins.DBList {
+	for _, info := range global.CONFIG.DBList {
 		if info.Disable {
 			continue
 		}

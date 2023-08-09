@@ -5,7 +5,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/twelvet-s/gins/framework"
 	"github.com/twelvet-s/gins/framework/global"
-	initialize2 "github.com/twelvet-s/gins/framework/initialize"
 	"github.com/twelvet-s/gins/router"
 	"go.uber.org/zap"
 )
@@ -22,11 +21,6 @@ func main() {
 	// 初始化zap日志库
 	global.LOG = framework.Zap()
 	zap.ReplaceGlobals(global.LOG)
-
-	// gorm连接数据库
-	initialize2.Gorm()
-	// redis
-	initialize2.Redis()
 
 	// 初始化路由
 	routerInit := router.InitRouter()

@@ -2,8 +2,8 @@ package initialize
 
 import (
 	"github.com/glebarez/sqlite"
-	"github.com/twelvet-s/gins/config"
-	"github.com/twelvet-s/gins/framework/initialize/internal"
+	"github.com/twelvet-s/gins/plugin/gorm/config"
+	"github.com/twelvet-s/gins/plugin/gorm/initialize/internal"
 	"gorm.io/gorm"
 )
 

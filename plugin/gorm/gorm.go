@@ -1,39 +1,27 @@
-package redis
+package gorm
 
 import (
-	"context"
 	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis/v8"
-	"github.com/twelvet-s/gins/framework/global"
-	globalPlugin "github.com/twelvet-s/gins/plugin/redis/global"
-	"github.com/twelvet-s/gins/plugin/redis/utils"
-	"go.uber.org/zap"
+	"github.com/twelvet-s/gins/plugin/gorm/initialize"
+	"gorm.io/gorm"
 )
 
-type redisPlugin struct{}
+var (
+	GORM *gorm.DB // GORM实例
 
-func CreateRedisPlug(addr, password string, db int) *redisPlugin {
-	globalPlugin.CONFIG.Addr = addr
-	globalPlugin.CONFIG.DB = db
-	globalPlugin.CONFIG.Password = password
-	return &redisPlugin{}
+	DBList map[string]*gorm.DB // 多数据源实例
+)
+
+type gormPlugin struct{}
+
+func CreateGormPlug() *gormPlugin {
+	return &gormPlugin{}
 }
 
-func (*redisPlugin) Register(group *gin.RouterGroup) {
-	client := redis.NewClient(&redis.Options{
-		Addr:     globalPlugin.CONFIG.Addr,
-		Password: globalPlugin.CONFIG.Password, // no password set
-		DB:       globalPlugin.CONFIG.DB,       // use default DB
-	})
-	pong, err := client.Ping(context.Background()).Result()
-	if err != nil {
-		global.LOG.Error("redis connect ping failed, err:", zap.Error(err))
-	} else {
-		global.LOG.Info("redis connect ping response:", zap.String("pong", pong))
-		utils.REDIS = client
-	}
+func (*gormPlugin) Register(group *gin.RouterGroup) {
+	initialize.GormInit()
 }
 
-func (*redisPlugin) RouterPath() string {
-	return "redis"
+func (*gormPlugin) RouterPath() string {
+	return "gorm"
 }

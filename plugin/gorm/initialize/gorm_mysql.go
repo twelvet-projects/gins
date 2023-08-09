@@ -2,8 +2,8 @@ package initialize
 
 import (
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/twelvet-s/gins/config"
-	"github.com/twelvet-s/gins/framework/initialize/internal"
+	"github.com/twelvet-s/gins/plugin/gorm/config"
+	"github.com/twelvet-s/gins/plugin/gorm/initialize/internal"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

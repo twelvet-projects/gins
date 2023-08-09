@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/twelvet-s/gins/framework/global"
 	"github.com/twelvet-s/gins/framework/utils/plugin"
+	"github.com/twelvet-s/gins/plugin/gorm"
 	"github.com/twelvet-s/gins/plugin/redis"
 )
 
@@ -23,10 +24,13 @@ func InstallPlugin(router *gin.Engine) {
 	privateGroup := router.Group("")
 
 	fmt.Println("鉴权插件安装==》", privateGroup)
-	// 加载redis
+	// 加载Redis
 	PluginInit(privateGroup, redis.CreateRedisPlug(
 		global.CONFIG.Gins.Redis.Addr,
 		global.CONFIG.Gins.Redis.Password,
 		global.CONFIG.Gins.Redis.DB,
 	))
+
+	// 加载Gorm
+	PluginInit(privateGroup, gorm.CreateGormPlug())
 }

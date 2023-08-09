@@ -3,39 +3,40 @@ package initialize
 import (
 	"database/sql"
 	"github.com/twelvet-s/gins/application/system/model"
-	"github.com/twelvet-s/gins/config"
 	"github.com/twelvet-s/gins/framework/global"
+	"github.com/twelvet-s/gins/plugin/gorm/config"
+	globalPugin "github.com/twelvet-s/gins/plugin/gorm/global"
 	"os"
 
 	"go.uber.org/zap"
 )
 
-// Gorm 初始化数据库并产生数据库全局变量
-func Gorm() {
-	dbConfig := global.CONFIG.Gins.Datasource
-	switch global.CONFIG.Gins.DbType {
+// GormInit 初始化数据库并产生数据库全局变量
+func GormInit() {
+	dbConfig := config.Datasource{}
+	switch globalPugin.CONFIG.DbType {
 	case "mysql":
-		global.DB = GormMysql(config.Mysql{
+		globalPugin.DB = GormMysql(config.Mysql{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	case "pgsql":
-		global.DB = GormPgSql(config.Pgsql{
+		globalPugin.DB = GormPgSql(config.Pgsql{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	case "oracle":
-		global.DB = GormOracle(config.Oracle{
+		globalPugin.DB = GormOracle(config.Oracle{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	case "mssql":
-		global.DB = GormMssql(config.Mssql{
+		globalPugin.DB = GormMssql(config.Mssql{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	case "sqlite":
-		global.DB = GormSqlite(config.Sqlite{
+		globalPugin.DB = GormSqlite(config.Sqlite{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	default:
-		global.DB = GormMysql(config.Mysql{
+		globalPugin.DB = GormMysql(config.Mysql{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	}
@@ -44,9 +45,9 @@ func Gorm() {
 	DBList()
 
 	// 程序结束前关闭数据库链接
-	if global.DB != nil {
+	if globalPugin.DB != nil {
 		RegisterTables() // 初始化表
-		db, _ := global.DB.DB()
+		db, _ := globalPugin.DB.DB()
 		defer func(db *sql.DB) {
 			_ = db.Close()
 		}(db)
@@ -55,7 +56,7 @@ func Gorm() {
 
 // RegisterTables 注册数据库表专用
 func RegisterTables() {
-	db := global.DB
+	db := globalPugin.DB
 	err := db.AutoMigrate(
 		// 系统模块表
 		model.SysDept{},
