@@ -2,19 +2,19 @@ package internal
 
 import (
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
-	"github.com/twelvet-s/gins/global"
+	"github.com/twelvet-s/gins/framework/global"
 	"go.uber.org/zap/zapcore"
 	"os"
 	"path"
 	"time"
 )
 
-var FileRotatelogs = new(fileRotatelogs)
+var FileRotateLogs = new(fileRotateLogs)
 
-type fileRotatelogs struct{}
+type fileRotateLogs struct{}
 
 // GetWriteSyncer 获取 zapcore.WriteSyncer
-func (r *fileRotatelogs) GetWriteSyncer(level string) (zapcore.WriteSyncer, error) {
+func (r *fileRotateLogs) GetWriteSyncer(level string) (zapcore.WriteSyncer, error) {
 	fileWriter, err := rotatelogs.New(
 		path.Join(global.CONFIG.Gins.Zap.Director, "%Y-%m-%d", level+".log"),
 		rotatelogs.WithClock(rotatelogs.Local),

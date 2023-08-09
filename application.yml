@@ -1,6 +1,8 @@
 server:
   # 服务端口
   port: 8080
+  # 路由前缀
+  router-prefix: /
 
 gins:
   db-type: mysql

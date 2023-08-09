@@ -2,7 +2,7 @@ package internal
 
 import (
 	"fmt"
-	"github.com/twelvet-s/gins/global"
+	"github.com/twelvet-s/gins/framework/global"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"time"
@@ -39,7 +39,7 @@ func (z *_zap) GetEncoderConfig() zapcore.EncoderConfig {
 
 // GetEncoderCore 获取Encoder的 zapcore.Core
 func (z *_zap) GetEncoderCore(l zapcore.Level, level zap.LevelEnablerFunc) zapcore.Core {
-	writer, err := FileRotatelogs.GetWriteSyncer(l.String()) // 使用file-rotatelogs进行日志分割
+	writer, err := FileRotateLogs.GetWriteSyncer(l.String()) // 使用file-rotatelogs进行日志分割
 	if err != nil {
 		fmt.Printf("Get Write Syncer Failed err:%v", err.Error())
 		return nil

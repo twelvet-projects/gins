@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/twelvet-s/gins/framework"
-	"github.com/twelvet-s/gins/global"
-	"github.com/twelvet-s/gins/initialize"
+	"github.com/twelvet-s/gins/framework/global"
+	initialize2 "github.com/twelvet-s/gins/framework/initialize"
 	"github.com/twelvet-s/gins/router"
 	"go.uber.org/zap"
 )
@@ -24,16 +24,17 @@ func main() {
 	zap.ReplaceGlobals(global.LOG)
 
 	// gorm连接数据库
-	initialize.Gorm()
+	initialize2.Gorm()
 	// redis
-	initialize.Redis()
+	initialize2.Redis()
 
 	// 初始化路由
-	routerInit := router.Init()
+	routerInit := router.InitRouter()
+
 	// 设置静态目录
-	routerInit.Static("/static", "./resources/static")
+	routerInit.Static(fmt.Sprintf("%s/static", global.CONFIG.Server.RouterPrefix), "./resources/static")
 	// favicon.ico
-	routerInit.StaticFile("/favicon.ico", "./resources/static/favicon.ico")
+	routerInit.StaticFile(fmt.Sprintf("%s/favicon.ico", global.CONFIG.Server.RouterPrefix), "./resources/static/favicon.ico")
 
 	// 启动服务
 	port := fmt.Sprintf(":%d", global.CONFIG.Server.Port)

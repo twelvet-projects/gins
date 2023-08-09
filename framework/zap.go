@@ -2,9 +2,9 @@ package framework
 
 import (
 	"fmt"
+	"github.com/twelvet-s/gins/framework/global"
 	"github.com/twelvet-s/gins/framework/internal"
-	"github.com/twelvet-s/gins/global"
-	"github.com/twelvet-s/gins/utils/file"
+	"github.com/twelvet-s/gins/framework/utils/file"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"os"
