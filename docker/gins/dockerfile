@@ -1,6 +1,14 @@
 # 指定基础镜像
 FROM golang:latest
+LABEL maintainer="2471835953@qq.com"
+# 挂载目录
+VOLUME /home/gins
+# 创建目录
+RUN mkdir -p /home/gins
 # 指定路径
 WORKDIR /home/gins
+# 复制jar文件到路径
+COPY ./ /home/gins
+# 启动服务
 ENV LANG=en_US.utf8
 CMD ls
