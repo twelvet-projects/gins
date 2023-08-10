@@ -19,6 +19,30 @@ func InitRouter() *gin.Engine {
 	// 安装插件
 	initialize.InstallPlugin(router)
 
+	// 注册表
+	registerTable()
+
+	// 处理500
+	router.Use(Advice500)
+
+	// 处理404
+	router.NoRoute(Advice404)
+
+	// 系统模块
+	systemRouter := system.SystemRouterGroupApp
+
+	// 首页
+	systemPrivateGroup := router.Group(global.CONFIG.Server.RouterPrefix)
+	{
+		// 首页
+		systemRouter.InitIndexRouter(systemPrivateGroup)
+	}
+
+	return router
+}
+
+// 注册表
+func registerTable() {
 	db := gorm.INSTANCE_DB
 	err := db.AutoMigrate(
 		// 系统模块表
@@ -44,22 +68,4 @@ func InitRouter() *gin.Engine {
 		os.Exit(0)
 	}
 	global.LOG.Info("register table success")
-
-	// 处理500
-	router.Use(Advice500)
-
-	// 处理404
-	router.NoRoute(Advice404)
-
-	// 系统模块
-	systemRouter := system.SystemRouterGroupApp
-
-	// 首页
-	systemPrivateGroup := router.Group(global.CONFIG.Server.RouterPrefix)
-	{
-		// 首页
-		systemRouter.InitIndexRouter(systemPrivateGroup)
-	}
-
-	return router
 }
