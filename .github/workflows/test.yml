@@ -20,7 +20,7 @@ jobs:
         run: cd docker && chmod 751 ./deploy.sh && ./deploy.sh base
 
       - name: Build Gins
-        run: go build -v && ls
+        run: go build -v ./... && ls
 
       - name: Start Server
         run: cd docker && ./deploy.sh server
@@ -31,4 +31,3 @@ jobs:
           sleep 10
           echo "Start checking the service, here are the service logs"
           docker logs --tail 500 gins
-
