@@ -3,4 +3,4 @@ FROM centos:7
 # 指定路径
 WORKDIR /home/gins
 ENV LANG=en_US.utf8
-CMD ls && ../../gins
+CMD go run main.go
