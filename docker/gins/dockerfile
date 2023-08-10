@@ -8,7 +8,7 @@ RUN mkdir -p /home/gins
 # 指定路径
 WORKDIR /home/gins
 # 复制文件到路径
-COPY ../../* /home/gins
+COPY ../../gins /home/gin/gins
 # 启动服务
 ENV LANG=en_US.utf8
 CMD ls
