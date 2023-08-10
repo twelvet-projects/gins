@@ -1,5 +1,5 @@
 # 指定基础镜像
-FROM centos:7
+FROM alpine:latest
 LABEL maintainer="2471835953@qq.com"
 # 挂载目录
 VOLUME /home/gins
@@ -9,6 +9,8 @@ RUN mkdir -p /home/gins
 WORKDIR /home/gins
 # 复制文件到路径
 COPY ../../gins /home/gin/gins
+COPY ../../resources /home/gin/resources
+COPY ../../application.release.yml /home/gin/application.release.yml
 # 启动服务
 ENV LANG=en_US.utf8
-CMD ls
+CMD ./gins
