@@ -19,9 +19,9 @@ func PluginInit(group *gin.RouterGroup, plugins ...plugin.Plugin) {
 
 // InstallPlugin 安装插件
 func InstallPlugin(router *gin.Engine) {
-	publicGroup := router.Group("")
+	publicGroup := router.Group(global.CONFIG.Server.RouterPrefix)
 	fmt.Println("无鉴权插件安装==》", publicGroup)
-	privateGroup := router.Group("")
+	privateGroup := router.Group(global.CONFIG.Server.RouterPrefix)
 
 	fmt.Println("鉴权插件安装==》", privateGroup)
 

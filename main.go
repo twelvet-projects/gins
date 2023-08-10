@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"github.com/twelvet-s/gins/framework"
 	"github.com/twelvet-s/gins/framework/global"
+	"github.com/twelvet-s/gins/framework/initialize"
 	"github.com/twelvet-s/gins/router"
 	"go.uber.org/zap"
 )
@@ -15,7 +15,6 @@ import (
 //go:generate go mod download
 
 func main() {
-	gin.SetMode(gin.DebugMode)
 	// 初始化Viper
 	global.Viper = framework.Viper()
 	// 初始化zap日志库
@@ -24,6 +23,9 @@ func main() {
 
 	// 初始化路由
 	routerInit := router.InitRouter()
+
+	// 初始化数据
+	initialize.InitDataSource()
 
 	// 设置静态目录
 	routerInit.Static(fmt.Sprintf("%s/static", global.CONFIG.Server.RouterPrefix), "./resources/static")
