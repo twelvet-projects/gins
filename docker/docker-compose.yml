@@ -47,6 +47,6 @@ services:
       - TZ=America/New_York
     build:
       context: ../
-      dockerfile: dockerfile
+      dockerfile: ./docker//gins/dockerfile
     ports:
       - "8080:8080"
