@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
 	"github.com/twelvet-s/gins/framework/global"
+	"github.com/twelvet-s/gins/plugin/redis/config"
 	globalPlugin "github.com/twelvet-s/gins/plugin/redis/global"
 	"go.uber.org/zap"
 )
@@ -15,10 +16,8 @@ var (
 
 type redisPlugin struct{}
 
-func CreateRedisPlug(addr, password string, db int) *redisPlugin {
-	globalPlugin.CONFIG.Addr = addr
-	globalPlugin.CONFIG.DB = db
-	globalPlugin.CONFIG.Password = password
+func CreateRedisPlug(redisConfig *config.Redis) *redisPlugin {
+	globalPlugin.CONFIG = redisConfig
 	return &redisPlugin{}
 }
 

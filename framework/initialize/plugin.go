@@ -24,13 +24,9 @@ func InstallPlugin(router *gin.Engine) {
 	privateGroup := router.Group("")
 
 	fmt.Println("鉴权插件安装==》", privateGroup)
-	// 加载Redis
-	PluginInit(privateGroup, redis.CreateRedisPlug(
-		global.CONFIG.Gins.Redis.Addr,
-		global.CONFIG.Gins.Redis.Password,
-		global.CONFIG.Gins.Redis.DB,
-	))
 
 	// 加载Gorm
-	PluginInit(privateGroup, gorm.CreateGormPlug())
+	PluginInit(privateGroup, gorm.CreateGormPlug(&global.CONFIG.Gins.Gorm))
+	// 加载Redis
+	PluginInit(privateGroup, redis.CreateRedisPlug(&global.CONFIG.Gins.Redis))
 }

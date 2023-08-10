@@ -5,5 +5,5 @@ import (
 )
 
 var (
-	CONFIG = new(config.Redis)
+	CONFIG *config.Redis // 配置
 )

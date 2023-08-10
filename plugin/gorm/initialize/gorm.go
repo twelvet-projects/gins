@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"github.com/twelvet-s/gins/application/system/model"
 	"github.com/twelvet-s/gins/framework/global"
+	"github.com/twelvet-s/gins/plugin/gorm"
 	"github.com/twelvet-s/gins/plugin/gorm/config"
 	globalPugin "github.com/twelvet-s/gins/plugin/gorm/global"
 	"os"
@@ -13,30 +14,30 @@ import (
 
 // GormInit 初始化数据库并产生数据库全局变量
 func GormInit() {
-	dbConfig := config.Datasource{}
+	dbConfig := globalPugin.CONFIG.Datasource
 	switch globalPugin.CONFIG.DbType {
 	case "mysql":
-		globalPugin.DB = GormMysql(config.Mysql{
+		gorm.INSTANCE_DB = GormMysql(config.Mysql{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	case "pgsql":
-		globalPugin.DB = GormPgSql(config.Pgsql{
+		gorm.INSTANCE_DB = GormPgSql(config.Pgsql{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	case "oracle":
-		globalPugin.DB = GormOracle(config.Oracle{
+		gorm.INSTANCE_DB = GormOracle(config.Oracle{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	case "mssql":
-		globalPugin.DB = GormMssql(config.Mssql{
+		gorm.INSTANCE_DB = GormMssql(config.Mssql{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	case "sqlite":
-		globalPugin.DB = GormSqlite(config.Sqlite{
+		gorm.INSTANCE_DB = GormSqlite(config.Sqlite{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	default:
-		globalPugin.DB = GormMysql(config.Mysql{
+		gorm.INSTANCE_DB = GormMysql(config.Mysql{
 			GeneralDB: dbConfig.GeneralDB,
 		})
 	}
@@ -45,9 +46,9 @@ func GormInit() {
 	DBList()
 
 	// 程序结束前关闭数据库链接
-	if globalPugin.DB != nil {
+	if gorm.INSTANCE_DB != nil {
 		RegisterTables() // 初始化表
-		db, _ := globalPugin.DB.DB()
+		db, _ := gorm.INSTANCE_DB.DB()
 		defer func(db *sql.DB) {
 			_ = db.Close()
 		}(db)
@@ -56,7 +57,7 @@ func GormInit() {
 
 // RegisterTables 注册数据库表专用
 func RegisterTables() {
-	db := globalPugin.DB
+	db := gorm.INSTANCE_DB
 	err := db.AutoMigrate(
 		// 系统模块表
 		model.SysDept{},

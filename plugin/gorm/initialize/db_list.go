@@ -1,6 +1,7 @@
 package initialize
 
 import (
+	gormPlugin "github.com/twelvet-s/gins/plugin/gorm"
 	"github.com/twelvet-s/gins/plugin/gorm/config"
 	"github.com/twelvet-s/gins/plugin/gorm/global"
 	"gorm.io/gorm"
@@ -32,5 +33,5 @@ func DBList() {
 	if sysDB, ok := dbMap[sys]; ok {
 		global.DB = sysDB
 	}
-	global.DBList = dbMap
+	gormPlugin.INSTANCE_DBList = dbMap
 }

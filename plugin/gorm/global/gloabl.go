@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	CONFIG config.Config // 配置
+	CONFIG *config.Config // 配置
 
 	DBList map[string]*gorm.DB // 多数据源
 
