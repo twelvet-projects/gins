@@ -20,7 +20,7 @@ jobs:
         run: cd docker && chmod 751 ./deploy.sh && ./deploy.sh base
 
       - name: Build Gins
-        run: go build -v ./...
+        run: go build -v
 
       - name: Start Server
         run: cd docker && ./deploy.sh server
