@@ -14,14 +14,14 @@ var (
 	INSTANCE *redis.Client // redis实例
 )
 
-type redisPlugin struct{}
+type PluginRedis struct{}
 
-func CreateRedisPlug(redisConfig *config.Redis) *redisPlugin {
+func CreateRedisPlug(redisConfig *config.Redis) *PluginRedis {
 	globalPlugin.CONFIG = redisConfig
-	return &redisPlugin{}
+	return &PluginRedis{}
 }
 
-func (*redisPlugin) Register(group *gin.RouterGroup) {
+func (*PluginRedis) Register(group *gin.RouterGroup) {
 	client := redis.NewClient(&redis.Options{
 		Addr:     globalPlugin.CONFIG.Addr,
 		Password: globalPlugin.CONFIG.Password, // no password set
@@ -36,6 +36,6 @@ func (*redisPlugin) Register(group *gin.RouterGroup) {
 	}
 }
 
-func (*redisPlugin) RouterPath() string {
+func (*PluginRedis) RouterPath() string {
 	return "redis"
 }
