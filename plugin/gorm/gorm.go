@@ -23,15 +23,15 @@ func CreateGormPlug(config *config.Config) *PluginGorm {
 }
 
 func (*PluginGorm) Register(group *gin.RouterGroup) {
-	GormInit()
+	InitGorm()
 }
 
 func (*PluginGorm) RouterPath() string {
 	return "gorm"
 }
 
-// GormInit 初始化数据库并产生数据库全局变量
-func GormInit() {
+// InitGorm 初始化数据库并产生数据库全局变量
+func InitGorm() {
 	dbConfig := CONFIG.Datasource
 	switch CONFIG.DbType {
 	case "mysql":
