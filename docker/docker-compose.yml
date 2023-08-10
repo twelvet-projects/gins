@@ -38,15 +38,15 @@ services:
       - ./redis/data:/data
     command: redis-server /home/gins/redis/redis.conf
 
-  gins-admin:
-    container_name: gins-admin
-    image: gins-admin
+  gins:
+    container_name: gins
+    image: gins
     restart: always
     environment:
       - MODE=standalone
       - TZ=America/New_York
     build:
-      context: gins/gins-admin
+      context: ../
       dockerfile: dockerfile
     ports:
       - "8080:8080"

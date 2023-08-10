@@ -6,7 +6,7 @@ gins:
   db-type: mysql
   # 数据库
   datasource:
-    path: 127.0.0.1
+    path: gins-mysql
     port: 3306
     config: charset=utf8mb4&parseTime=True&loc=Local
     db-name: gins
@@ -21,7 +21,7 @@ gins:
     - disable: true # 是否禁用
       type: "mysql" # 数据库的类型,目前支持mysql、pgsql、mssql、oracle
       alias-name: slave # 数据库的名称,注意: alias-name 需要在db-list中唯一
-      path: 127.0.0.1
+      path: gins-mysql
       port: 3306
       config: charset=utf8mb4&parseTime=True&loc=Local
       db-name: gins
@@ -33,7 +33,7 @@ gins:
       log-zap: false
   # redis
   redis:
-    addr: 127.0.0.1:6379
+    addr: gins-redis:6379
     db: 1
     password:
   # 日志配置

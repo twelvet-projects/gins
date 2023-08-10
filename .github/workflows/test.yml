@@ -16,6 +16,16 @@ jobs:
         with:
           go-version: '1.20'
 
-      - name: run Gins
-        run: go run main.go
+      - name: Start Base
+        run: cd docker && ./deploy.sh base
+
+      - name: Start Server
+        run: cd docker && ./deploy.sh server
+
+      - name: Check Server
+        run: |
+          cd docker
+          sleep 10
+          echo "Start checking the service, here are the service logs"
+          docker logs --tail 500 gins
 
