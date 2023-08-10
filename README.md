@@ -2,9 +2,7 @@
 
 基于Gin 进行常用第三方插件封装的框架(Mysql, Redis, Viper, Zap等)，保持它的轻量、性能
 
-后端源码：https://github.com/twelvet-s/gins
-
-前端源码：https://github.com/twelvet-s/twelvet-ui
+直接上手业务，无需过多关注业务
 
 ## TwelveT交流群
 
