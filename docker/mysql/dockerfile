@@ -6,3 +6,6 @@ MAINTAINER twelvet
 ENV TZ=America/New_York
 
 RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# 执行sql脚本
+COPY ./db/init.sql /docker-entrypoint-initdb.d/
