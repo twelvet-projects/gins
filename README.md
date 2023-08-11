@@ -1,6 +1,7 @@
 # gins
 
-基于Gin 进行常用第三方插件封装的框架(Mysql, Redis, Viper, Zap等)，保持它的轻量、性能
+基于Gin 进行常用第三方插件封装，保持它的轻量、性能
+拥有日志、配置、数据库(Mysql、Mssql、Oracle、Pgsql、Sqlite)、Redis、Swagger基础功能
 
 直接上手业务，无需过多关注基础建设
 

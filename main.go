@@ -14,6 +14,13 @@ import (
 //go:generate go mod tidy
 //go:generate go mod download
 
+// @title                       Gins API
+// @version                     1.0.0
+// @description                 Gins Swagger
+// @securityDefinitions.apikey  ApiKeyAuth
+// @in                          header
+// @name                        x-token
+// @BasePath                    /
 func main() {
 	// 初始化Viper
 	global.Viper = framework.Viper()

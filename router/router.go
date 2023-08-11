@@ -1,7 +1,10 @@
 package router
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 	system "github.com/twelvet-s/gins/application/system/router"
 	"github.com/twelvet-s/gins/framework/global"
 	"github.com/twelvet-s/gins/framework/initialize"
@@ -20,6 +23,9 @@ func InitRouter() *gin.Engine {
 
 	// 处理404
 	router.NoRoute(Advice404)
+
+	// Swagger
+	router.GET(fmt.Sprintf("%s/swagger/*any", global.CONFIG.Server.RouterPrefix), ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// 系统模块
 	systemRouter := system.SystemRouterGroupApp

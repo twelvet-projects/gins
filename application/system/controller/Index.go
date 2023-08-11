@@ -11,7 +11,14 @@ var (
 	indexService = service.IndexService{}
 )
 
-// Index 首页Api
+// Index
+// @Summary 首页欢迎
+// @Description 首页欢迎
+// @Tags Index
+// @Summary  用户登录
+// @Produce   application/json
+// @Success 200 {object} string
+// @Router / [get]
 func (h *IndexApi) Index(c *gin.Context) {
 	indexService.Index(c)
 }
