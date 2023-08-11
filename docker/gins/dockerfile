@@ -8,8 +8,10 @@ RUN mkdir -p /home/gins
 # 指定路径
 WORKDIR /home/gins
 # 复制文件到路径
-COPY ./build/* /home/gins/
+COPY ./build/gins /home/gins/gins
+COPY ./build/resources /home/gins/resources
+COPY ./build/application.release.yml /home/gins/application.release.yml
 RUN chmod +x gins
 # 启动服务
 ENV LANG=en_US.utf8
-CMD ls && ./gins
+CMD ls && ./gins -c application.release.yml
