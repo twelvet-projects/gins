@@ -43,7 +43,7 @@ services:
     image: gins
     restart: always
     environment:
-      - GINS_CONFIG=release
+      - GIN_MODE=release
       - MODE=standalone
       - TZ=America/New_York
     build:
