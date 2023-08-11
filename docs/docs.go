@@ -25,7 +25,7 @@ const docTemplate = `{
                 "tags": [
                     "Index"
                 ],
-                "summary": "用户登录",
+                "summary": "首页欢迎",
                 "responses": {
                     "200": {
                         "description": "OK",

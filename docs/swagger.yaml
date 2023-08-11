@@ -14,7 +14,7 @@ paths:
           description: OK
           schema:
             type: string
-      summary: 用户登录
+      summary: 首页欢迎
       tags:
       - Index
 securityDefinitions:
