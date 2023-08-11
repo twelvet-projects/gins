@@ -3,24 +3,10 @@ server:
   port: 8080
 
 gins:
-  db-type: mysql
-  # 数据库
-  datasource:
-    path: gins-mysql
-    port: 3306
-    config: charset=utf8mb4&parseTime=True&loc=Local
-    db-name: gins
-    username: root
-    password: 123456
-    max-idle-conns: 10
-    max-open-conns: 100
-    engine:
-    log-mode:
-    log-zap: false
-  db-list:
-    - disable: true # 是否禁用
-      type: "mysql" # 数据库的类型,目前支持mysql、pgsql、mssql、oracle
-      alias-name: slave # 数据库的名称,注意: alias-name 需要在db-list中唯一
+  gorm:
+    db-type: mysql
+    # 数据库
+    datasource:
       path: gins-mysql
       port: 3306
       config: charset=utf8mb4&parseTime=True&loc=Local
@@ -29,8 +15,23 @@ gins:
       password: 123456
       max-idle-conns: 10
       max-open-conns: 100
+      engine:
       log-mode:
       log-zap: false
+    db-list:
+      - disable: true # 是否禁用
+        type: "mysql" # 数据库的类型,目前支持mysql、pgsql、mssql、oracle
+        alias-name: slave # 数据库的名称,注意: alias-name 需要在db-list中唯一
+        path: gins-mysql
+        port: 3306
+        config: charset=utf8mb4&parseTime=True&loc=Local
+        db-name: gins
+        username: root
+        password: 123456
+        max-idle-conns: 10
+        max-open-conns: 100
+        log-mode:
+        log-zap: false
   # redis
   redis:
     addr: gins-redis:6379
