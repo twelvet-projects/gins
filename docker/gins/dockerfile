@@ -13,4 +13,4 @@ COPY ../../resources /home/gin/resources
 COPY ../../application.release.yml /home/gin/application.release.yml
 # 启动服务
 ENV LANG=en_US.utf8
-CMD /home/gin/gins -c application.release.yml
+CMD ls
