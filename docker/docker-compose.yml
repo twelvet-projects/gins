@@ -46,7 +46,7 @@ services:
       - MODE=standalone
       - TZ=America/New_York
     build:
-      context: ../
-      dockerfile: ./docker/gins/dockerfile
+      context: ./gins
+      dockerfile: dockerfile
     ports:
       - "8080:8080"

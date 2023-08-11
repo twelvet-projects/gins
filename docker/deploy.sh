@@ -6,6 +6,15 @@ usage() {
   exit 1
 }
 
+# 初始化
+init() {
+  # copy gins
+  echo "begin copy gins"
+  cp ../gins ./gins/build/gins
+  cp -r ../resources ./gins/build/resources
+  cp ../application.release.yml ./gins/build/application.release.yml
+}
+
 # 开启所需端口
 port() {
   firewall-cmd --add-port=8080/tcp --permanent
@@ -36,6 +45,9 @@ rm() {
 
 # 根据输入参数，选择执行对应方法，不输入则执行使用说明
 case "$1" in
+"init")
+  init
+  ;;
 "port")
   port
   ;;
