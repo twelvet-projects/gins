@@ -1,5 +1,5 @@
 # 指定基础镜像
-FROM alpine:latest
+FROM centos:7
 LABEL maintainer="2471835953@qq.com"
 # 挂载目录
 VOLUME /home/gins
