@@ -31,6 +31,6 @@ jobs:
       - name: Check Server
         run: |
           cd docker
-          sleep 10
+          sleep 30
           echo "Start checking the service, here are the service logs"
           docker logs --tail 500 gins
