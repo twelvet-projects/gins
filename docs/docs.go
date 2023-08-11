@@ -18,7 +18,7 @@ const docTemplate = `{
     "paths": {
         "/": {
             "get": {
-                "description": "首页欢迎",
+                "description": "欢迎Json",
                 "produces": [
                     "application/json"
                 ],
