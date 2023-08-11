@@ -6,3 +6,5 @@ MAINTAINER twelvet
 ENV TZ=America/New_York
 
 RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN --initialize-insecure \
+    && mysql -e 'CREATE DATABASE IF NOT EXISTS gins'
