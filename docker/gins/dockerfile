@@ -8,7 +8,7 @@ RUN mkdir -p /home/gins
 # 指定路径
 WORKDIR /home/gins
 # 复制文件到路径
-COPY ./build/gins /home/gins/gins
+COPY ./build/gins /home/gins/
 COPY ./build/resources /home/gins/resources
 COPY ./build/application.release.yml /home/gins/application.release.yml
 # 启动服务
