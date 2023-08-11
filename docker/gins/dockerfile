@@ -11,4 +11,4 @@ WORKDIR /home/gins
 COPY ./build/* /home/gins/
 # 启动服务
 ENV LANG=en_US.utf8
-CMD ./gins -c application.release.yml
+CMD ls
