@@ -1,0 +1,25 @@
+info:
+  contact: {}
+  description: Gins Swagger
+  title: Gins API
+  version: 1.0.0
+paths:
+  /:
+    get:
+      description: 首页欢迎
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 用户登录
+      tags:
+      - Index
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: x-token
+    type: apiKey
+swagger: "2.0"
