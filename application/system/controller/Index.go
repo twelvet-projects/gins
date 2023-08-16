@@ -13,7 +13,7 @@ var (
 
 // Index
 // @Summary Welcome to gins
-// @Description Welcome to gins
+// @Description Welcome to gins pu
 // @Tags Index
 // @Produce   application/json
 // @Success 200 {object} string

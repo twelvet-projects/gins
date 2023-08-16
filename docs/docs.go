@@ -18,14 +18,14 @@ const docTemplate = `{
     "paths": {
         "/": {
             "get": {
-                "description": "欢迎Json",
+                "description": "Welcome to gins pu",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Index"
                 ],
-                "summary": "首页欢迎",
+                "summary": "Welcome to gins",
                 "responses": {
                     "200": {
                         "description": "OK",

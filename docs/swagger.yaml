@@ -6,7 +6,7 @@ info:
 paths:
   /:
     get:
-      description: 欢迎Json
+      description: Welcome to gins pu
       produces:
       - application/json
       responses:
@@ -14,7 +14,7 @@ paths:
           description: OK
           schema:
             type: string
-      summary: 首页欢迎
+      summary: Welcome to gins
       tags:
       - Index
 securityDefinitions:
