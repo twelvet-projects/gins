@@ -29,6 +29,11 @@ func InitRouter() *gin.Engine {
 	docs.SwaggerInfo.BasePath = global.CONFIG.Server.RouterPrefix
 	router.GET(fmt.Sprintf("%s/swagger/*any", global.CONFIG.Server.RouterPrefix), ginSwagger.WrapHandler(swaggerFiles.Handler))
 
+	// 设置静态目录
+	router.Static(fmt.Sprintf("%s/static", global.CONFIG.Server.RouterPrefix), "./resources/static")
+	// favicon.ico
+	router.StaticFile(fmt.Sprintf("%s/favicon.ico", global.CONFIG.Server.RouterPrefix), "./resources/static/favicon.ico")
+
 	// 系统模块
 	systemRouter := system.SystemRouterGroupApp
 
