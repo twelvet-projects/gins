@@ -12,8 +12,8 @@ var (
 )
 
 // Index
-// @Summary 首页欢迎
-// @Description 欢迎Json
+// @Summary Welcome to gins
+// @Description Welcome to gins
 // @Tags Index
 // @Produce   application/json
 // @Success 200 {object} string
