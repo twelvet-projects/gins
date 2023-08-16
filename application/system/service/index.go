@@ -9,5 +9,5 @@ type IndexService struct{}
 
 // Index 首页服务
 func (h *IndexService) Index(c *gin.Context) {
-	response.OkWithMessage("欢迎使用Gins", c)
+	response.OkWithMessage("Welcome to gins", c)
 }
