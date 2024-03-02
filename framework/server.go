@@ -42,7 +42,6 @@ func StartServer() {
 
 	欢迎使用 Gins
 	当前版本: v1.0.0
-	加群方式: QQ群：985830229
 	自动化文档地址: http://127.0.0.1%s/swagger/index.html
 	API地址: http://127.0.0.1%s
 
